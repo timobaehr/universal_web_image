@@ -11,17 +11,26 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Universal Web Image for Flutter Web apps
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+* Show an image as html image, if necessary.
+* Distinguish between svg images and others automatically
 
-## Getting started
+## Motivation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+If you try to load an image without valid XHR status 200, an error is thrown and the image does not
+become visible on web.
+
+```
+Failed to load network image.
+Image URL: https://example.com/invalidConfiguredServerImage.jpg
+Trying to load an image from another domain? Find answers at:
+https://flutter.dev/docs/development/platform-integration/web-images
+```
+
+This package solves the issue by using a Web Image as fallback.
 
 ## Usage
 
@@ -31,9 +40,3 @@ to `/example` folder.
 ```dart
 const like = 'sample';
 ```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.

@@ -2,8 +2,8 @@ library universal_web_image;
 
 import 'package:flutter/widgets.dart';
 
-import './web_image/web_image.dart'
-if (dart.library.js) '../../common/web_image/web_image_web.dart';
+import 'package:universal_web_image/web_image/web_image.dart'
+if (dart.library.js) 'package:universal_web_image/web_image/web_image_web.dart';
 
 class UniversalWebImage extends StatelessWidget {
   const UniversalWebImage({
@@ -21,6 +21,7 @@ class UniversalWebImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Show as regular image
     return webImage(
       context: context,
       imageUrl: imageUrl,
