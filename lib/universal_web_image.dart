@@ -2,9 +2,11 @@ library universal_web_image;
 
 import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:universal_web_image/web_image/canvas_renderer_image.dart';
 
 import 'package:universal_web_image/web_image/web_image.dart'
 if (dart.library.js) 'package:universal_web_image/web_image/web_image_web.dart';
@@ -15,10 +17,13 @@ class UniversalWebImage extends StatefulWidget {
     required this.imageUrl,
     this.width = 100,
     this.height = 100,
+    this.fit,
     this.customImageBuilder,
   });
 
   final String imageUrl;
+
+  final BoxFit? fit;
 
   final double width;
 
@@ -40,20 +45,28 @@ class _UniversalWebImageState extends State<UniversalWebImage> {
 
   @override
   Widget build(BuildContext context) {
-    if (bytes == null && !hasError) {
+    if (kIsWeb && bytes == null && !hasError) {
       _bytes();
       return const Text('loading');
     }
-    if (hasError) {
-      debugPrint('Image ${widget.imageUrl} cannot be drawn by Flutter canvas renderer.');
+    if (!hasError && widget.customImageBuilder == null) {
+      return CanvasRendererImage(
+        imageUrl: widget.imageUrl,
+        width: widget.width,
+        height: widget.height,
+        fit: widget.fit,
+      );
     }
+    if (!hasError && widget.customImageBuilder != null) {
+      return widget.customImageBuilder!(context);
+    }
+
+    // Image ${widget.imageUrl} cannot be drawn by Flutter canvas renderer.
     return webImage(
       context: context,
-      bytes: hasError ? null : bytes,
       imageUrl: widget.imageUrl,
       width: widget.width,
       height: widget.height,
-      builder: hasError ? null : widget.customImageBuilder,
     );
   }
 

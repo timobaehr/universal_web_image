@@ -7,17 +7,20 @@ class CanvasRendererImage extends StatelessWidget {
     super.key,
     required this.imageUrl,
     this.bytes,
-    this.width = 100,
-    this.height = 100,
+    this.width,
+    this.height,
+    this.fit,
   });
 
   final String imageUrl;
 
   final Uint8List? bytes;
 
-  final double width;
+  final double? width;
 
-  final double height;
+  final double? height;
+
+  final BoxFit? fit;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +32,14 @@ class CanvasRendererImage extends StatelessWidget {
               bytes!,
               height: height,
               width: width,
+              fit: fit ?? BoxFit.contain,
             )
-          : Image.memory(bytes!, height: height, width: width);
+          : Image.memory(
+              bytes!,
+              height: height,
+              width: width,
+              fit: fit,
+            );
     }
     return isSvgImage
         ? SvgPicture.network(
