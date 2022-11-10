@@ -1,7 +1,5 @@
 library universal_web_image;
 
-import 'dart:typed_data';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
@@ -50,12 +48,10 @@ class _UniversalWebImageState extends State<UniversalWebImage> {
       return const Text('loading');
     }
     if (!hasError && widget.customImageBuilder == null) {
-      final width = widget.fit == null ? widget.width : null;
-      final height = widget.fit == null ? widget.height : null;
       return CanvasRendererImage(
         imageUrl: widget.imageUrl,
-        width: width,
-        height: height,
+        width: widget.width,
+        height: widget.height,
         fit: widget.fit,
       );
     }

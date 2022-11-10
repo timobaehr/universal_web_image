@@ -6,7 +6,7 @@ analyzer:
     missing_required_param: error
     missing_return: error
     todo: ignore
-    undefined_prefixed_name: ignore
+    undefined_prefixed_name: error
   language:
     strict-inference: true
     strict-raw-types: true

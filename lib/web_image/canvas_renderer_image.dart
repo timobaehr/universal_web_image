@@ -46,11 +46,13 @@ class CanvasRendererImage extends StatelessWidget {
             imageUrl,
             height: height,
             width: width,
+            fit: fit ?? BoxFit.contain,
           )
         : Image.network(
             imageUrl,
             width: width,
             height: height,
+            fit: fit,
           );
   }
 }

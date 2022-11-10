@@ -1,6 +1,6 @@
 name: universal_web_image
 description: Image widget that also works on web for urls without valid XHR
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/timobaehr/universal_web_image
 
 environment:

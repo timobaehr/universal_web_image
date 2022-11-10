@@ -11,6 +11,7 @@ Widget webImage({
   double? width,
   double? height,
 }) {
+  // ignore: undefined_prefixed_name
   ui.platformViewRegistry.registerViewFactory(
       imageUrl,
           (int viewId) => ImageElement(
