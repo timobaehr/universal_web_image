@@ -35,6 +35,12 @@ class MyHomePage extends StatelessWidget {
 
   final String title;
 
+  // 424x283
+  static const validImageUrl = 'https://www.kesselheld.de/content/uploads/2018/09/durchschnittliche-heizkosten.jpg';
+
+  // 640x300
+  static const invalidImageUrl = 'https://img.utopia.de/cH68CrxH2UEqUr8eVAWC-BCgXoU=/640x300/https://utopia.de/app/uploads/2019/02/richtig-heizen-wpb-ivan-kruk-ri-190820-1280x720.jpg';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,19 +55,25 @@ class MyHomePage extends StatelessWidget {
               'Web Image with valid XHR 200 status',
             ),
             const UniversalWebImage(
-              imageUrl: 'https://www.kesselheld.de/content/uploads/2018/09/durchschnittliche-heizkosten.jpg',
+              imageUrl: validImageUrl,
+              width: 424,
+              height: 283,
             ),
             const Text(
               'Web Image with invalid XHR 0 status',
             ),
             const UniversalWebImage(
-              imageUrl: 'https://img.utopia.de/cH68CrxH2UEqUr8eVAWC-BCgXoU=/640x300/https://utopia.de/app/uploads/2019/02/richtig-heizen-wpb-ivan-kruk-ri-190820-1280x720.jpg',
+              imageUrl: invalidImageUrl,
+              width: 640,
+              height: 300,
             ),
             const Text(
               'Regular image with invalid XHR 0 status',
             ),
             Image.network(
-              'https://img.utopia.de/cH68CrxH2UEqUr8eVAWC-BCgXoU=/640x300/https://utopia.de/app/uploads/2019/02/richtig-heizen-wpb-ivan-kruk-ri-190820-1280x720.jpg',
+              invalidImageUrl,
+              width: 640,
+              height: 300,
             ),
           ],
         ),

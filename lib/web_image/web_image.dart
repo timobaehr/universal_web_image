@@ -1,12 +1,12 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:universal_web_image/web_image/canvas_renderer_image.dart';
 
 Widget webImage({
   required BuildContext context,
   required String imageUrl,
   required double width,
+  Uint8List? bytes,
   double height = 37.0,
   String messageNoConnection = 'No connection',
   Widget Function(BuildContext context)? builder,
@@ -15,15 +15,10 @@ Widget webImage({
     return builder(context);
   }
 
-  return (imageUrl.endsWith('.svg'))
-      ? SvgPicture.network(
-          imageUrl,
-          height: height,
-          width: width,
-        )
-      : Image.network(
-          imageUrl,
-          width: width,
-          height: height,
-        );
+  return CanvasRendererImage(
+    bytes: bytes,
+    imageUrl: imageUrl,
+    width: width,
+    height: height,
+  );
 }
