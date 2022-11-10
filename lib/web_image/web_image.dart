@@ -5,7 +5,7 @@ Widget webImage({
   required BuildContext context,
   required String imageUrl,
   required double width,
-  double height = 37.0,
+  required double height,
 }) {
   return CanvasRendererImage(
     imageUrl: imageUrl,

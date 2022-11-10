@@ -15,8 +15,8 @@ class UniversalWebImage extends StatefulWidget {
   const UniversalWebImage({
     super.key,
     required this.imageUrl,
-    this.width = 100,
-    this.height = 100,
+    this.width,
+    this.height,
     this.fit,
     this.customImageBuilder,
   });
@@ -25,9 +25,9 @@ class UniversalWebImage extends StatefulWidget {
 
   final BoxFit? fit;
 
-  final double width;
+  final double? width;
 
-  final double height;
+  final double? height;
 
   /// If you use [customImageBuilder], you break the auto distinguish feature.
   /// Hence, you have to handle drawing svg images vs. other images yourself.
@@ -65,8 +65,9 @@ class _UniversalWebImageState extends State<UniversalWebImage> {
     return webImage(
       context: context,
       imageUrl: widget.imageUrl,
-      width: widget.width,
-      height: widget.height,
+      // TODO: How can be get pixels of the image?
+      width: widget.width ?? 100,
+      height: widget.height ?? 100,
     );
   }
 
