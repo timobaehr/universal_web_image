@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-Universal Web Image for Flutter Web apps
+Universal Web Image for Flutter Web apps with external hosted images.
 
 ## Features
 

@@ -50,10 +50,12 @@ class _UniversalWebImageState extends State<UniversalWebImage> {
       return const Text('loading');
     }
     if (!hasError && widget.customImageBuilder == null) {
+      final width = widget.fit == null ? widget.width : null;
+      final height = widget.fit == null ? widget.height : null;
       return CanvasRendererImage(
         imageUrl: widget.imageUrl,
-        width: widget.width,
-        height: widget.height,
+        width: width,
+        height: height,
         fit: widget.fit,
       );
     }

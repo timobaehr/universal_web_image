@@ -56,8 +56,6 @@ class MyHomePage extends StatelessWidget {
             ),
             const UniversalWebImage(
               imageUrl: validImageUrl,
-              width: 424,
-              height: 283,
             ),
             const Text(
               'Web Image with invalid XHR 0 status',
