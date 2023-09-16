@@ -11,6 +11,7 @@ class CanvasRendererImage extends StatelessWidget {
     this.width,
     this.height,
     this.fit,
+    this.onLoaded,
   });
 
   final String imageUrl;
@@ -23,6 +24,8 @@ class CanvasRendererImage extends StatelessWidget {
 
   final BoxFit? fit;
 
+  final VoidCallback? onLoaded;
+
   @override
   Widget build(BuildContext context) {
     final bool isSvgImage = imageUrl.endsWith('.svg');
@@ -30,30 +33,36 @@ class CanvasRendererImage extends StatelessWidget {
     if (bytes != null) {
       return isSvgImage
           ? SvgPicture.memory(
-              bytes!,
-              height: height,
-              width: width,
-              fit: fit ?? BoxFit.contain,
-            )
+        bytes!,
+        height: height,
+        width: width,
+        fit: fit ?? BoxFit.contain,
+      )
           : Image.memory(
-              bytes!,
-              height: height,
-              width: width,
-              fit: fit,
-            );
+        bytes!,
+        height: height,
+        width: width,
+        fit: fit,
+      );
     }
     return isSvgImage
         ? SvgPicture.network(
-            imageUrl,
-            height: height,
-            width: width,
-            fit: fit ?? BoxFit.contain,
-          )
+      imageUrl,
+      height: height,
+      width: width,
+      fit: fit ?? BoxFit.contain,
+    )
         : Image.network(
-            imageUrl,
-            width: width,
-            height: height,
-            fit: fit,
-          );
+      imageUrl,
+      width: width,
+      height: height,
+      fit: fit,
+      loadingBuilder: (context, widget, event) {
+        if (event != null && event.cumulativeBytesLoaded == event.expectedTotalBytes && onLoaded != null) {
+          onLoaded!();
+        }
+        return widget;
+      },
+    );
   }
 }
