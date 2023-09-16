@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:universal_web_image/web_image/canvas_renderer_image.dart';
 
 import 'package:universal_web_image/web_image/web_image.dart'
-if (dart.library.js) 'package:universal_web_image/web_image/web_image_web.dart';
+    if (dart.library.js) 'package:universal_web_image/web_image/web_image_web.dart';
 
 class UniversalWebImage extends StatefulWidget {
   const UniversalWebImage({
@@ -17,6 +17,7 @@ class UniversalWebImage extends StatefulWidget {
     this.height,
     this.fit,
     this.customImageBuilder,
+    this.customLoaderBuilder,
   });
 
   final String imageUrl;
@@ -31,12 +32,14 @@ class UniversalWebImage extends StatefulWidget {
   /// Hence, you have to handle drawing svg images vs. other images yourself.
   final Widget Function(BuildContext context)? customImageBuilder;
 
+  /// Use to give custom loading widget while image is loading
+  final Widget Function(BuildContext context)? customLoaderBuilder;
+
   @override
   State<UniversalWebImage> createState() => _UniversalWebImageState();
 }
 
 class _UniversalWebImageState extends State<UniversalWebImage> {
-
   Uint8List? bytes;
 
   bool hasError = false;
@@ -45,7 +48,7 @@ class _UniversalWebImageState extends State<UniversalWebImage> {
   Widget build(BuildContext context) {
     if (kIsWeb && bytes == null && !hasError) {
       _bytes();
-      return const Text('loading');
+      return widget.customLoaderBuilder?.call(context) ?? const Text('loading');
     }
     if (!hasError && widget.customImageBuilder == null) {
       return CanvasRendererImage(
@@ -89,4 +92,3 @@ class _UniversalWebImageState extends State<UniversalWebImage> {
     return true;
   }
 }
-
