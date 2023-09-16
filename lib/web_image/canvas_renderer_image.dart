@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+/// This image widget uses the Flutter rendering engine (drawing on the canvas).
 class CanvasRendererImage extends StatelessWidget {
   const CanvasRendererImage({
     super.key,

@@ -9,6 +9,9 @@ import 'package:universal_web_image/web_image/canvas_renderer_image.dart';
 import 'package:universal_web_image/web_image/web_image.dart'
     if (dart.library.js) 'package:universal_web_image/web_image/web_image_web.dart';
 
+/// If there are loading problems with an image on the web, then this view
+/// automatically uses HTML to render the image, otherwise an image is
+/// drawn on the flutter canvas.
 class UniversalWebImage extends StatefulWidget {
   const UniversalWebImage({
     super.key,
