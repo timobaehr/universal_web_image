@@ -1,6 +1,7 @@
 ## 0.1.0
 
 * Be able to attach a custom loader widget
+* Optional onLoaded callback added
 
 ## 0.0.3
 
