@@ -49,10 +49,13 @@ class _UniversalWebImageState extends State<UniversalWebImage> {
     }
     if (!hasError && widget.customImageBuilder == null) {
       return CanvasRendererImage(
-        imageUrl: widget.imageUrl,
-        width: widget.width,
-        height: widget.height,
-        fit: widget.fit,
+          imageUrl: widget.imageUrl,
+          width: widget.width,
+          height: widget.height,
+          fit: widget.fit,
+          onLoaded: () {
+            setState(() {});
+          }
       );
     }
     if (!hasError && widget.customImageBuilder != null) {
