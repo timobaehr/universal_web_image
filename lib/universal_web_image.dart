@@ -61,8 +61,7 @@ class _UniversalWebImageState extends State<UniversalWebImage> {
           fit: widget.fit,
           onLoaded: () {
             setState(() {});
-          }
-      );
+          });
     }
     if (!hasError && widget.customImageBuilder != null) {
       return widget.customImageBuilder!(context);
