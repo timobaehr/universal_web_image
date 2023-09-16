@@ -36,10 +36,12 @@ class MyHomePage extends StatelessWidget {
   final String title;
 
   // 424x283
-  static const validImageUrl = 'https://www.kesselheld.de/content/uploads/2018/09/durchschnittliche-heizkosten.jpg';
+  static const validImageUrl =
+      'https://www.kesselheld.de/content/uploads/2018/09/durchschnittliche-heizkosten.jpg';
 
   // 640x300
-  static const invalidImageUrl = 'https://img.utopia.de/cH68CrxH2UEqUr8eVAWC-BCgXoU=/640x300/https://utopia.de/app/uploads/2019/02/richtig-heizen-wpb-ivan-kruk-ri-190820-1280x720.jpg';
+  static const invalidImageUrl =
+      'https://img.utopia.de/cH68CrxH2UEqUr8eVAWC-BCgXoU=/640x300/https://utopia.de/app/uploads/2019/02/richtig-heizen-wpb-ivan-kruk-ri-190820-1280x720.jpg';
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +54,12 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const Text(
-              'Web Image with valid XHR 200 status',
+              'Web Image with valid XHR 200 status with custom loader',
             ),
-            const UniversalWebImage(
+            UniversalWebImage(
               imageUrl: validImageUrl,
+              customLoaderBuilder: (context) =>
+                  const Center(child: CircularProgressIndicator()),
             ),
             const Text(
               'Web Image with invalid XHR 0 status',

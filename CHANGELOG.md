@@ -1,3 +1,7 @@
+## 0.1.0
+
+* Be able to attach a custom loader widget
+
 ## 0.0.3
 
 BoxFit fix
